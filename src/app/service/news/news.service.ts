@@ -18,8 +18,8 @@ export class NewsService {
     return this.http.get<Article>(`${this.uri}/show/` + id);
   }
 
-  getArticles(): Observable<Article[]> {
+  getArticles(page, limit = 10, count = false): Observable<Article[]> {
     const eventId = 26;
-    return this.http.get<Article[]>(`${this.uri}/list/` + eventId);
+    return this.http.get<Article[]>(`${this.uri}/list/` + eventId + '/' + page + '/' + limit + '/' + count);
   }
 }

@@ -1,18 +1,23 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      News List
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-list>
 
-<ion-content [fullscreen]="true">
-  <ion-card *ngFor="let article of articleList">
-    <a [routerLink]="['/cycleau-news/show-article', article.id]">
-      <ion-img [src]="assetPath + article.illustration.file"></ion-img>
-    </a>
-    <ion-card-header>
-      {{ article.title }}
-    </ion-card-header>
-  </ion-card>
+
+    <ion-card *ngFor="let article of articleList">
+      <a [routerLink]="['/cycleau-news/show-article', article.id]">
+        <ion-img [src]="assetPath + article.illustration.file"></ion-img>
+      </a>
+      <ion-card-header>
+        {{ article.title }}
+      </ion-card-header>
+    </ion-card>
+
+
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event, page)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

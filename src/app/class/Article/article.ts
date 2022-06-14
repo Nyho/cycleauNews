@@ -9,4 +9,5 @@ export class Article {
   sponsored: boolean;
   categories: [{ title: string }];
   illustration: { id: number; file: string };
+  totalCount: number = null;
 }

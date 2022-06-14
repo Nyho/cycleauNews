@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Globals} from '../../global';
-import {ActivatedRoute} from '@angular/router';
-import {Article} from '../../class/Article/article';
+import { Component, OnInit } from '@angular/core';
+import { Globals } from '../../global';
+import { ActivatedRoute } from '@angular/router';
+import { Article } from '../../class/Article/article';
 
 @Component({
   selector: 'app-article-show',
