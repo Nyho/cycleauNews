@@ -29,19 +29,18 @@ export class Tab2Page implements OnInit {
 
   submitForm() {
     this.isSubmitted = true;
+    this.articleList = [];
 
     if (!this.ionicForm.valid) {
       console.log('Please provide all the required values!');
       return false;
     } else {
-      console.log(this.ionicForm.value);
-
       this.newsService.searchArticle(this.page, 3, true, this.ionicForm.value.name)
         .subscribe((articles: Article[]) => {
 
           if (Array.isArray(articles)) {
             for (const item of articles) {
-              if (item.totalCount) {
+              if (item.totalCount !== undefined) {
                 this.totalCount = item.totalCount;
               } else {
                 this.articleList.push(item);

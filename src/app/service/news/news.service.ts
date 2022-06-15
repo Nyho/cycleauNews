@@ -25,8 +25,6 @@ export class NewsService {
 
   searchArticle(page, limit = 10, count = false, keyword = ''): Observable<Article[]> {
     const eventId = 26;
-
-    console.log(page, limit, count, keyword);
     return this.http.get<Article[]>(`${this.uri}/search/` + eventId + '/' + page + '/' + limit + '/' + count + '/' + keyword);
   }
 }
