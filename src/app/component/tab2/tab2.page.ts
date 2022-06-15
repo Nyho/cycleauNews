@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Article } from '../../class/Article/article';
+import { NewsService } from '../../service/news/news.service';
+import {Globals} from "../../global";
 
 @Component({
   selector: 'app-tab2',
@@ -11,7 +14,12 @@ export class Tab2Page implements OnInit {
   ionicForm: FormGroup;
   isSubmitted = false;
 
-  constructor(public formBuilder: FormBuilder) {}
+  public articleList: Article[] = [];
+  public assetPath = `${Globals.appApiUrl}`;
+  public page = 1;
+  private totalCount;
+
+  constructor(public formBuilder: FormBuilder, private newsService: NewsService) {}
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
@@ -27,6 +35,22 @@ export class Tab2Page implements OnInit {
       return false;
     } else {
       console.log(this.ionicForm.value);
+
+      this.newsService.searchArticle(this.page, 3, true, this.ionicForm.value.name)
+        .subscribe((articles: Article[]) => {
+
+          if (Array.isArray(articles)) {
+            for (const item of articles) {
+              if (item.totalCount) {
+                this.totalCount = item.totalCount;
+              } else {
+                this.articleList.push(item);
+              }
+            }
+          } else {
+            this.articleList.push(articles);
+          }
+        });
     }
   }
 }

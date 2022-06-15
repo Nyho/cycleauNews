@@ -19,4 +19,13 @@
       </ion-col>
     </ion-row>
   </form>
+
+  <ion-card *ngFor="let article of articleList">
+    <a [routerLink]="['/cycleau-news/show-article', article.id]">
+      <ion-img [src]="assetPath + article.illustration.file"></ion-img>
+    </a>
+    <ion-card-header>
+      {{ article.title }}
+    </ion-card-header>
+  </ion-card>
 </ion-content>

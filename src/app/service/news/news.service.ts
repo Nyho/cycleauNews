@@ -23,8 +23,10 @@ export class NewsService {
     return this.http.get<Article[]>(`${this.uri}/list/` + eventId + '/' + page + '/' + limit + '/' + count);
   }
 
-  searchArticle(page, limit = 10, count = false): Observable<Article[]> {
+  searchArticle(page, limit = 10, count = false, keyword = ''): Observable<Article[]> {
     const eventId = 26;
-    return this.http.get<Article[]>(`${this.uri}/search/` + eventId + '/' + page + '/' + limit + '/' + count);
+
+    console.log(page, limit, count, keyword);
+    return this.http.get<Article[]>(`${this.uri}/search/` + eventId + '/' + page + '/' + limit + '/' + count + '/' + keyword);
   }
 }
