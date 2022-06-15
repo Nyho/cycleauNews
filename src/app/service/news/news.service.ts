@@ -22,4 +22,9 @@ export class NewsService {
     const eventId = 26;
     return this.http.get<Article[]>(`${this.uri}/list/` + eventId + '/' + page + '/' + limit + '/' + count);
   }
+
+  searchArticle(page, limit = 10, count = false): Observable<Article[]> {
+    const eventId = 26;
+    return this.http.get<Article[]>(`${this.uri}/search/` + eventId + '/' + page + '/' + limit + '/' + count);
+  }
 }
