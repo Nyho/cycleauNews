@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Article } from '../../class/Article/article';
 import { NewsService } from '../../service/news/news.service';
-import {Globals} from "../../global";
+import { Globals } from '../../global';
 
 @Component({
   selector: 'app-tab2',
@@ -19,7 +19,10 @@ export class Tab2Page implements OnInit {
   public page = 1;
   private totalCount;
 
-  constructor(public formBuilder: FormBuilder, private newsService: NewsService) {}
+  constructor(
+    public formBuilder: FormBuilder,
+    private newsService: NewsService
+  ) {}
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({

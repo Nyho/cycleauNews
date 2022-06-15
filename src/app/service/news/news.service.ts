@@ -11,6 +11,7 @@ import { Article } from '../../class/Article/article';
 
 export class NewsService {
   private uri = `${Globals.appApiUrl}/article-api`;
+  private eventId = 26;
 
   constructor(private http: HttpClient) {}
 
@@ -19,12 +20,10 @@ export class NewsService {
   }
 
   getArticles(page, limit = 10, count = false): Observable<Article[]> {
-    const eventId = 26;
-    return this.http.get<Article[]>(`${this.uri}/list/` + eventId + '/' + page + '/' + limit + '/' + count);
+    return this.http.get<Article[]>(`${this.uri}/list/` + this.eventId + '/' + page + '/' + limit + '/' + count);
   }
 
   searchArticle(page, limit = 10, count = false, keyword = ''): Observable<Article[]> {
-    const eventId = 26;
-    return this.http.get<Article[]>(`${this.uri}/search/` + eventId + '/' + page + '/' + limit + '/' + count + '/' + keyword);
+    return this.http.get<Article[]>(`${this.uri}/search/` + this.eventId + '/' + page + '/' + limit + '/' + count + '/' + keyword);
   }
 }
